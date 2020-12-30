@@ -18,10 +18,10 @@ public class CartItem {
 
     @ManyToOne(targetEntity=Cart.class, fetch = FetchType.LAZY)
     @JsonBackReference
-    private @NonNull @Getter @Setter Cart cart;
+    private @Getter @Setter Cart cart;
     
-    private @NonNull @Getter @Setter Date dateTimeCreated;
-    private @NonNull @Getter @Setter String itemName;
-    private @NonNull @Getter @Setter String itemDescription;
-    private @NonNull @Getter @Setter String itemURL;
+    private @Getter @Setter Date dateTimeCreated;
+    private @Getter @Setter String itemName;
+    private @Getter @Setter String itemDescription;
+    private @Getter @Setter String itemURL;
 }

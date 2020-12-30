@@ -1,0 +1,29 @@
+<mat-card>
+    <mat-card-header style="justify-content: center;">
+        <div>
+            <mat-card-title>Pick an APOD Date!</mat-card-title>
+        </div>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-grid-list cols="4" rowHeight="100px">
+            <mat-grid-tile colspan="2" rowSpan="1">
+                <mat-form-field appearance="fill">
+                    <mat-label>Choose a date</mat-label>
+                    <input matInput [matDatepicker]="picker" (dateChange)="selectDate($event)">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>            
+            </mat-grid-tile>
+            <mat-grid-tile colspan="2" rowSpan="1">
+                <button mat-raised-button color="primary" (click)="addToCart()">Add to Cart</button>            
+            </mat-grid-tile>
+        </mat-grid-list>
+    </mat-card-content>
+</mat-card>
+
+<div *ngIf="response">
+    {{response.title}} <br>
+    {{response.explanation}} <br>
+    <iframe width="420" height="315" [src]="youtubeString" *ngIf="response.media_type == 'video'"></iframe>
+    <img id="pic" src="{{response.url}}" alt="NASA Picture Of The Day" width="100%" *ngIf="response.media_type == 'image'">
+</div>

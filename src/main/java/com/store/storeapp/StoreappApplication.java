@@ -8,6 +8,8 @@ import java.util.stream.Stream;
 
 import com.store.storeapp.repository.CartItemRepository;
 import com.store.storeapp.repository.CartRepository;
+import com.store.storeapp.service.CartItemService;
+import com.store.storeapp.service.CartService;
 
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
@@ -22,13 +24,11 @@ public class StoreappApplication {
 	}
 
 	@Bean
-    ApplicationRunner init(CartRepository cartRepository, CartItemRepository cartItemRepository) {
-		Cart cart = new Cart();
-		cart.setDateTimePlaced(new Date());
+    ApplicationRunner init(CartService cartService, CartItemService cartItemService, CartRepository cartRepository, CartItemRepository cartItemRepository) {
+		Cart cart = cartService.createCart();
 		cart.setDeliveryCity("Chicago");
-		cart.setFirstName("firstName");
-		cart.setLastName("lastName");
-		cartRepository.save(cart);
+		cart.setOrderPlaced(false);
+		cart.setEmail("peter.reilly11@gmail.com");
 
 		Stream.of("Andromeda Galaxy", "Milky Way", "Earth").forEach(name -> {
 			CartItem cartItem = new CartItem();
@@ -39,11 +39,11 @@ public class StoreappApplication {
 			cartItem.setItemURL(name + ".com");
 			cart.addCartItem(cartItem);
 		});
-		cartRepository.save(cart);
+		cartService.putCart(cart);
 
 		return args -> {
 			cartRepository.findAll().forEach(System.out::println);
 			cartItemRepository.findAll().forEach(System.out::println);
 		};
-    }
+	}
 }

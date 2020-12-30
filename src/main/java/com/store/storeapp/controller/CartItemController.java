@@ -14,10 +14,12 @@ import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.IanaLinkRelations;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -37,6 +39,16 @@ public class CartItemController {
         EntityModel<CartItem> entityModel = assembler.toModel(cartItemService.createCartItem(newCartItem));
         return ResponseEntity
             .created(entityModel.getRequiredLink(IanaLinkRelations.SELF).toUri()) 
+            .body(entityModel);
+    }
+
+    @PutMapping("/cart-item")
+    public ResponseEntity<?> putCartItem(@RequestBody CartItem upsertedCartItem) {
+        CartItem updatedCartItem = cartItemService.putCartItem(upsertedCartItem);
+        EntityModel<CartItem> entityModel = assembler.toModel(updatedCartItem);
+
+        return ResponseEntity //
+            .created(entityModel.getRequiredLink(IanaLinkRelations.SELF).toUri()) //
             .body(entityModel);
     }
 
@@ -64,8 +76,10 @@ public class CartItemController {
         return assembler.toModel(cartItem);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping("/cart-item/{id}")
     ResponseEntity<?> deleteCartItem(@PathVariable Long id) {
+        System.out.println("deleting item " + id);
         cartItemService.deleteCartItem(id);
         return ResponseEntity.noContent().build();
     }

@@ -1,0 +1,17 @@
+<mat-card>
+    <mat-card-title>
+        <div *ngIf="cart">
+            Cart # {{cart.id}}
+        </div>
+    </mat-card-title>
+    <mat-card-content>
+        <mat-grid-list cols="4" rowHeight="1:1" *ngIf="cart">
+            <mat-grid-tile
+                *ngFor="let cartItem of cart.cartItems">
+                <app-cart-item [cartItem]="cartItem" [isRemovable]="isCartItemRemovable" (removeRequest)="removeItem($event)"></app-cart-item>
+            </mat-grid-tile>
+        </mat-grid-list>
+        <button mat-raised-button (click)="checkout()" color="accent">Checkout</button>
+        <button mat-raised-button color="basic" [routerLink]="['/my-cart-history']">History</button>
+    </mat-card-content>
+</mat-card>

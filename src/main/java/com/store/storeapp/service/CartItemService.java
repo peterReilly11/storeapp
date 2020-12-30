@@ -32,13 +32,9 @@ public class CartItemService {
 	public Collection<CartItem> findByCartId(Long id) {
 		return cartItemRepository.findByCart(cartService.findById(id));
     }
-
-    public CartItem createCart(CartItem newCartItem){
-        return cartItemRepository.save(newCartItem);
-    }
     
-    public CartItem putCartItem(CartItem upsertedCartItem, Long id){
-        return cartItemRepository.findById(id)
+    public CartItem putCartItem(CartItem upsertedCartItem){
+        return cartItemRepository.findById(upsertedCartItem.getId())
             .map(cartItem -> {
                 cartItem.setCart(upsertedCartItem.getCart());
                 cartItem.setItemName(upsertedCartItem.getItemName());
@@ -48,7 +44,7 @@ public class CartItemService {
                 return cartItemRepository.save(cartItem);
             })
             .orElseGet(() -> {
-                upsertedCartItem.setId(id);
+                upsertedCartItem.setId(upsertedCartItem.getId());
                 return cartItemRepository.save(upsertedCartItem);
             });
     }
