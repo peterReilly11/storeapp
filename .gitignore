@@ -31,3 +31,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### API Keys/Info ###
+/src/main/java/com/store/storeapp/client/src/app/api-info/api-info.module.ts
+/src/main/resources/application.properties

@@ -1,6 +1,6 @@
 package com.store.storeapp;
 
-import com.store.storeapp.model.Cart;
+/*import com.store.storeapp.model.Cart;
 import com.store.storeapp.model.CartItem;
 
 import java.util.Date;
@@ -11,10 +11,10 @@ import com.store.storeapp.repository.CartRepository;
 import com.store.storeapp.service.CartItemService;
 import com.store.storeapp.service.CartService;
 
-import org.springframework.boot.ApplicationRunner;
+import org.springframework.boot.ApplicationRunner;*/
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
+// import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class StoreappApplication {
@@ -23,6 +23,7 @@ public class StoreappApplication {
 		SpringApplication.run(StoreappApplication.class, args);
 	}
 
+	/*
 	@Bean
     ApplicationRunner init(CartService cartService, CartItemService cartItemService, CartRepository cartRepository, CartItemRepository cartItemRepository) {
 		Cart cart = cartService.createCart();
@@ -45,5 +46,5 @@ public class StoreappApplication {
 			cartRepository.findAll().forEach(System.out::println);
 			cartItemRepository.findAll().forEach(System.out::println);
 		};
-	}
+	} */
 }
