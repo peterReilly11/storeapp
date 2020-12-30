@@ -40,6 +40,13 @@ public class CartService {
         return cartRepository.save(cart);
     }
 
+    public Cart createCart(String email){
+        Cart cart = new Cart();
+        cart.setDateTimeCreated(new Date());
+        cart.setEmail(email);
+        return cartRepository.save(cart);
+    }
+
     public Cart putCart(Cart upsertedCart){
         return cartRepository.findById(upsertedCart.getId())
             .map(cart -> {

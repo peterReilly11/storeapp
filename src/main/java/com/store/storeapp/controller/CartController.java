@@ -54,7 +54,13 @@ public class CartController {
     @GetMapping("/cart")
     ResponseEntity<?> getCart() {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
-        EntityModel<Cart> entityModel = assembler.toModel(cartService.findByEmailNewestCart(email));
+        Cart cart = cartService.findByEmailNewestCart(email);
+        EntityModel<Cart> entityModel;
+        if(cart == null){
+            entityModel = assembler.toModel(cartService.createCart(email));
+        } else {
+            entityModel = assembler.toModel(cart);
+        }
         return ResponseEntity
             .created(entityModel.getRequiredLink(IanaLinkRelations.SELF).toUri()) 
             .body(entityModel);
