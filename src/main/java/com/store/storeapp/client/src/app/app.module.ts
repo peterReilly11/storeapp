@@ -21,6 +21,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { MyCartHistoryComponent } from './my-cart-history/my-cart-history.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { DonkiComponent } from './donki/donki.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     CartComponent,
     CartItemComponent,
     ApodComponent,
-    MyCartHistoryComponent
+    MyCartHistoryComponent,
+    DonkiComponent
   ],
   imports: [
     BrowserModule,

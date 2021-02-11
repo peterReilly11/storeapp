@@ -8,6 +8,7 @@ import { CartComponent } from '../cart/cart.component';
 import { CartService } from '../shared/cart/cart.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ApiInfoModule } from '../api-info/api-info.module';
+import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-apod',
@@ -26,16 +27,21 @@ export class ApodComponent implements OnInit {
   baseURL = 'https://api.nasa.gov/planetary/apod/?api_key='+this.apiKey;
   response : any;
   youtubeString : any;
+  todaysDate = new FormControl(new Date());
 
   ngOnInit(): void {
+    this.makeAPICall(new Date());
   }
 
   selectDate(event: MatDatepickerInputEvent<Date>) {
-    console.log(event.value);
-    console.log(event.value.getMonth());
-    const dateToSend = '&date=' + event.value.getUTCFullYear() + '-' + (event.value.getMonth() + 1) + '-' + event.value.getDate();
+    var date = new Date(event.value.getUTCFullYear(), event.value.getMonth(), event.value.getDate());
+    this.makeAPICall(date);
+  }
+
+  makeAPICall(datePassed : Date){
+    const dateToSend = '&date=' + datePassed.getUTCFullYear() + '-' + (datePassed.getMonth() + 1) + '-' + datePassed.getDay();
+    console.log(dateToSend);
     const url = this.baseURL + dateToSend;
-    console.log(url);
     const myObserver = {
       next: response => this.response = response,
       error: err => console.error('Observer got an error: ' + err),

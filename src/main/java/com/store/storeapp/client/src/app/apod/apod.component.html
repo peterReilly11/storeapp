@@ -1,3 +1,4 @@
+<br>
 <mat-card>
     <mat-card-header style="justify-content: center;">
         <div>
@@ -9,7 +10,7 @@
             <mat-grid-tile colspan="2" rowSpan="1">
                 <mat-form-field appearance="fill">
                     <mat-label>Choose a date</mat-label>
-                    <input matInput [matDatepicker]="picker" (dateChange)="selectDate($event)">
+                    <input matInput [matDatepicker]="picker" (dateChange)="selectDate($event)" [value]="todaysDate.value">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>            
@@ -20,10 +21,18 @@
         </mat-grid-list>
     </mat-card-content>
 </mat-card>
-
+<br>
 <div *ngIf="response">
-    {{response.title}} <br>
-    {{response.explanation}} <br>
-    <iframe width="420" height="315" [src]="youtubeString" *ngIf="response.media_type == 'video'"></iframe>
-    <img id="pic" src="{{response.url}}" alt="NASA Picture Of The Day" width="100%" *ngIf="response.media_type == 'image'">
+<mat-card>
+    <mat-card-header style="justify-content: center;">
+        <div>
+            <mat-card-title>{{response.title}}</mat-card-title>
+        </div>
+    </mat-card-header>
+    <mat-card-content>
+        {{response.explanation}} <br>
+        <iframe width="420" height="315" [src]="youtubeString" *ngIf="response.media_type == 'video'"></iframe>
+        <img id="pic" src="{{response.url}}" alt="NASA Picture Of The Day" width="100%" *ngIf="response.media_type == 'image'">
+    </mat-card-content>
+</mat-card>
 </div>
