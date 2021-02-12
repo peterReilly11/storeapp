@@ -1,0 +1,39 @@
+version: "3.8"
+services: 
+  mysqldb:
+    image: mysql:8
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=store_app
+    ports:
+      - 3306:3306
+
+  store-app-spring:
+    image: spring-store:latest
+    restart: on-failure
+    depends_on:
+      - mysqldb
+    ports:
+      - 8080:8080
+    environment:
+      #- DATABASE_PORT=3306
+      #- DATABASE_USER=myapp-user
+      #- DATABASE_PASSWORD=password
+      #- DATABASE_NAME=store_app
+      #- DATABASE_HOST=mysqldb
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysqldb:3306/store_app
+
+
+  store-app-angular:
+    image: angular-store:latest
+    ports:
+      - 4200:4200
+    command:
+        bash -c "npm install && ng serve --host 0.0.0.0 --port 4200"
+
+secrets:
+  sql_secret:
+    external: true
+    name: mysqldb

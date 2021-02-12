@@ -1,0 +1,27 @@
+<mat-card>
+    <mat-card-title>
+        Cart History
+    </mat-card-title>
+</mat-card>
+
+<br/>
+<br/>
+
+<div *ngFor="let cart of carts">
+    <mat-card *ngIf="cart.orderPlaced">
+        <mat-card-title>
+            Cart # {{cart.id}} <br/>
+            Order Placed: {{cart.dateTimePlaced | date : 'short' }}
+        </mat-card-title>
+        <mat-card-content>
+            <mat-grid-list cols="4" rowHeight="1:1" *ngIf="cart">
+                <mat-grid-tile
+                    *ngFor="let cartItem of cart.cartItems">
+                    <app-cart-item [cartItem]="cartItem"></app-cart-item>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </mat-card-content>
+    </mat-card>
+    <br/>
+    <br/>
+</div>

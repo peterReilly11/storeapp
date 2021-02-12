@@ -16,16 +16,16 @@ public class Cart {
     @Id @GeneratedValue (strategy = GenerationType.IDENTITY) @Getter @Setter
     private Long id;
     
-    private @NonNull @Getter @Setter String firstName;
-    private @NonNull @Getter @Setter String lastName;
-    private @NonNull @Getter @Setter Date dateTimePlaced;
-    private @NonNull @Getter @Setter String deliveryCity;
+    private @NonNull @Getter @Setter String email;
+    private @Getter @Setter boolean orderPlaced;
+    private @Getter @Setter Date dateTimePlaced;
+    private @Getter @Setter Date dateTimeCreated;
+    private @Getter @Setter String deliveryCity;
 
     @OneToMany(
         targetEntity=CartItem.class,
         mappedBy = "cart",
-        cascade = CascadeType.ALL,
-        orphanRemoval = true
+        cascade = CascadeType.ALL
     )
     @JsonManagedReference
     private @Getter @Setter List<CartItem> cartItems = new ArrayList<>();
@@ -41,8 +41,8 @@ public class Cart {
     }
 
     public String prettyPrint(){
-        return this.firstName + 
-            " " + this.lastName + 
+        return this.email + 
+            " " + this.orderPlaced + 
             " " + this.dateTimePlaced + 
             " " + this.deliveryCity;
     }
