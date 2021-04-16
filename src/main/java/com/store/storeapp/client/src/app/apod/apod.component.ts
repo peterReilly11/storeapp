@@ -39,7 +39,7 @@ export class ApodComponent implements OnInit {
   }
 
   makeAPICall(datePassed : Date){
-    const dateToSend = '&date=' + datePassed.getUTCFullYear() + '-' + (datePassed.getMonth() + 1) + '-' + datePassed.getDay();
+    const dateToSend = '&date=' + datePassed.getUTCFullYear() + '-' + (datePassed.getMonth() + 1) + '-' + datePassed.getDate();
     console.log(dateToSend);
     const url = this.baseURL + dateToSend;
     const myObserver = {

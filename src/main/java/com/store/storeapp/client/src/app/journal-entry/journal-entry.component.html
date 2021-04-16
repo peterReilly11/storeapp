@@ -1,0 +1,14 @@
+<mat-list-item *ngIf="journal.description != ''">
+    Title: {{journal.description}}
+    <mat-divider></mat-divider>
+</mat-list-item>
+
+<mat-list-item *ngIf="journal.dateTimeCreated != null">
+    Date: {{journal.dateTimeCreated | date}}
+    <mat-divider></mat-divider>
+</mat-list-item>
+
+<mat-list-item *ngIf="journal.entry != ''">
+    Entry: {{journal.entry}}
+    <mat-divider></mat-divider>
+</mat-list-item>

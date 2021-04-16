@@ -1,0 +1,42 @@
+<br>
+<mat-card>
+    <mat-card-header style="justify-content: center;">
+        <div>
+            <mat-card-title>Journals</mat-card-title>
+        </div>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-tab-group>
+            <mat-tab label="My Journals">
+                <br>
+                
+                <div style="text-align: center;">
+                    <button mat-raised-button color="primary" (click)="openDialog()">New Journal Entry</button>
+                </div>
+
+                <br>
+
+                <mat-grid-list cols="4" rowHeight="1:1" *ngIf="journals">
+                    <mat-grid-tile *ngFor="let journal of journals">
+                        <mat-list>
+                            <app-journal-entry [journal]="journal"> </app-journal-entry>
+                            <mat-list-item >
+                                <button mat-raised-button color="Secondary" (click)="openDialagEdit(journal)">Edit Journal</button>
+                            </mat-list-item>
+                        </mat-list>
+                    </mat-grid-tile>
+                </mat-grid-list>
+            </mat-tab>
+
+            <mat-tab label="All Journals">
+                <mat-grid-list cols="4" rowHeight="1:1" *ngIf="allJournals">
+                    <mat-grid-tile *ngFor="let journal of allJournals">
+                        <mat-list>
+                            <app-journal-entry [journal]="journal"> </app-journal-entry>
+                        </mat-list>
+                    </mat-grid-tile>
+                </mat-grid-list>
+            </mat-tab>
+        </mat-tab-group>
+    </mat-card-content>
+</mat-card>

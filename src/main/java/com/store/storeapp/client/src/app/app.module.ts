@@ -21,7 +21,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { MyCartHistoryComponent } from './my-cart-history/my-cart-history.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-import { DonkiComponent } from './donki/donki.component';
+import { JournalComponent } from './journal/journal.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {JournalModal} from './journal/journal.component'
+import { FormsModule } from '@angular/forms';
+import {MatTabsModule} from '@angular/material/tabs';
+import { JournalEntryComponent } from './journal-entry/journal-entry.component';
+
 
 @NgModule({
   declarations: [
@@ -30,7 +36,9 @@ import { DonkiComponent } from './donki/donki.component';
     CartItemComponent,
     ApodComponent,
     MyCartHistoryComponent,
-    DonkiComponent
+    JournalComponent,
+    JournalModal,
+    JournalEntryComponent
   ],
   imports: [
     BrowserModule,
@@ -48,10 +56,16 @@ import { DonkiComponent } from './donki/donki.component';
     MatNativeDateModule,
     BrowserAnimationsModule,
     MatExpansionModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDialogModule,
+    FormsModule,
+    MatTabsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents : [
+    JournalModal
+  ]
 })
 export class AppModule{ 
 }

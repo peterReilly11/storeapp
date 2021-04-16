@@ -15,7 +15,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
   private handleAccess(request: HttpRequest<any>, next: HttpHandler): Promise<HttpEvent<any>> {
     // Only add an access token to whitelisted origins
-    const allowedOrigins = ['localhost:8080/cart', 'localhost:8080/all-my-carts'];
+    const allowedOrigins = ['localhost:8080/cart', 'localhost:8080/all-my-carts', 'localhost:8080/journals-by-email', 'localhost:8080/journal', 'localhost:8080/all-journals'];
     if (allowedOrigins.some(url => request.urlWithParams.includes(url))) {
       const accessToken = this.oktaAuth.getAccessToken();
       request = request.clone({
