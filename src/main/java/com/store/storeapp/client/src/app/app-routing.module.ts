@@ -4,26 +4,26 @@ import { CartComponent } from './cart/cart.component';
 import { MyCartHistoryComponent } from './my-cart-history/my-cart-history.component';
 import { OktaAuthGuard } from '@okta/okta-angular';
 import { ApodComponent } from './apod/apod.component';
-import { DonkiComponent } from './donki/donki.component';
+import { JournalComponent } from './journal/journal.component';
 
 const routes: Routes = [
   {
-    path: 'cart',
-    component: CartComponent,
-    canActivate: [OktaAuthGuard]
+    path : 'cart',
+    component : CartComponent,
+    canActivate : [OktaAuthGuard]
   },
   {
     path : 'apod',
     component : ApodComponent
   },
   {
-    path: 'my-cart-history',
-    component: MyCartHistoryComponent,
-    canActivate: [OktaAuthGuard]
+    path : 'my-cart-history',
+    component : MyCartHistoryComponent,
+    canActivate : [OktaAuthGuard]
   },
   {
-    path: 'donki',
-    component : DonkiComponent
+    path : 'journal',
+    component : JournalComponent
   }
 ];
 

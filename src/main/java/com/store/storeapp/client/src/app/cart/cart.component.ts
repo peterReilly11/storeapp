@@ -11,7 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class CartComponent implements OnInit, OnDestroy {
 
-  @Input() cart : any;
+  cart : any;
   isCartItemRemovable : boolean;
   cartId : string;
   sub: Subscription;

@@ -1,0 +1,24 @@
+<h1 mat-dialog-title>{{data.description}} Journal Entry</h1>
+<div mat-dialog-content>
+    <mat-form-field>
+        <mat-label>Journal Title</mat-label>
+        <input matInput placeholder="Ex. Great night to watch" [(ngModel)]="data.description">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+        <mat-label>Date</mat-label>
+        <input matInput [matDatepicker]="picker" [(ngModel)]="data.dateTimeCreated">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+        <mat-label>Entry</mat-label>
+        <textarea matInput type="text" [(ngModel)]="data.entry" rows="15" cols="60"></textarea>
+    </mat-form-field>
+</div>
+
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+  </div>
